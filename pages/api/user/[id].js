@@ -11,7 +11,7 @@ export default async (req, res) => {
 
   // Retrieve the updated user type
   const user = await redis.hgetall(req.query.id);
-  if (user) res.status(200).json(user);
+  if (user) res.status(200).send(user);
   // If the user has logged in only with the OAuth instance return 404
   else {
     res.status(404).send("");

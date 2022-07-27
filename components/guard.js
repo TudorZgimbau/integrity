@@ -2,7 +2,7 @@
 
 import { useSession, signIn } from "next-auth/react";
 import { useMoralis } from "react-moralis";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Guard = ({ children }) => {
   const { data: session, status } = useSession();
@@ -14,7 +14,6 @@ const Guard = ({ children }) => {
       if (session && session.user) {
         // If the user has only logged in with OAuth, prompt him to complete the account details
         const _res = await fetch("/api/user/" + session.user.name);
-
         if (_res.status === 404) {
           let userType;
           while (!["donor", "charity"].includes(userType))
@@ -32,9 +31,24 @@ const Guard = ({ children }) => {
               type: userType,
             }),
           });
-          // If the input is correct, render the component.
-          setRender(children);
-        } else setRender(children);
+          // If the input is correct, render the component with user data as props.
+          if (React.isValidElement(children)) {
+            const userData = {
+              name: session.user.name,
+              type: userType,
+            };
+            let pageWithData = React.cloneElement(children, { userData });
+            setRender(pageWithData);
+          }
+        } else {
+          let data = await _res.json();
+          const userData = {
+            name: session.user.name,
+            type: data.type,
+          };
+          let pageWithData = React.cloneElement(children, { userData });
+          setRender(pageWithData);
+        }
       }
     };
     checkUser();
