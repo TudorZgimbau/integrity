@@ -9,21 +9,10 @@ export default async (req, res) => {
     return;
   }
 
-  const name = req.body.name;
-  const type = req.body.type;
-  const wallet = req.body.wallet;
-
-  if (type === "customer")
-    await redis.hmset(name, {
-      type: "customer",
-    });
-  else if (type === "creator")
-    await redis.hmset(name, {
-      type: "creator",
-      amount: 0.0003,
-      wallet: wallet,
-    });
-
-  res.status(200).send("");
-  return;
+  const message = await redis.get(req.query.id);
+  if (message) res.status(200).send(message);
+  else {
+    res.status(404).send("");
+    return;
+  }
 };
