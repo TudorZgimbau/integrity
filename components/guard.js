@@ -51,8 +51,10 @@ const Guard = ({ children }) => {
             sum: data.sum,
             wallet: data.wallet,
           };
-          let pageWithData = React.cloneElement(children, { userData });
-          setRender(pageWithData);
+          if (React.isValidElement(children)) {
+            let pageWithData = React.cloneElement(children, { userData });
+            setRender(pageWithData);
+          }
         }
       }
     };
