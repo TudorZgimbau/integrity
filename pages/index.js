@@ -1,13 +1,11 @@
-import { useRouter } from "next/router";
-
 const Home = ({ userData }) => {
-  const router = useRouter();
-
   if (userData.type === "customer")
     return (
       <>
         <div>customer</div>
-        <button onClick={() => router.replace("/chat/tudoras1970@gmail.com")}>
+        <button
+          onClick={() => (window.location.href = "/chat/tudoras1970@gmail.com")}
+        >
           go to chat
         </button>
       </>
@@ -16,7 +14,9 @@ const Home = ({ userData }) => {
     return (
       <>
         <div>creator</div>;
-        <button onClick={() => router.replace("/chat/tudoras1970@gmail.com")}>
+        <button
+          onClick={() => (window.location.href = "/chat/tudoras1970@gmail.com")}
+        >
           go to chat
         </button>
       </>

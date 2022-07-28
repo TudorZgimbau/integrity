@@ -68,7 +68,7 @@ const Chat = ({ userData, creatorData }) => {
             },
             body: JSON.stringify({
               hash: transaction.hash,
-              message: "cv",
+              message: ref.current.value,
             }),
           });
         }}

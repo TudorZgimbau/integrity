@@ -1,4 +1,4 @@
-import { useSession, signOut } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import { useEffect } from "react";
 
 const Out = () => {
