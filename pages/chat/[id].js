@@ -60,7 +60,6 @@ const Chat = ({ userData, creatorData }) => {
       <button
         onClick={async () => {
           const transaction = await send();
-          console.log(transaction);
           await fetch("/api/message/add", {
             method: "POST",
             headers: {
