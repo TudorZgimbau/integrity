@@ -1,5 +1,5 @@
 # Description
-Integrity is a simple blockchain-based remuneration platform for content creators and service providers to use when implementing subscription-based features.
+Built on the 2022 [infoeducatie](https://infoeducatie.ro/) open, integrity is a simple blockchain-based remuneration platform for content creators and service providers to use when implementing subscription-based features. 
 
 # Motivation
 When paying for services we often have trouble obtaining a proof of payment or transaction/message history with the provider. Integrity aimes to solve this by using blockchain transaction hashes as keys for storing the messages, with the history being persisted on chain.
